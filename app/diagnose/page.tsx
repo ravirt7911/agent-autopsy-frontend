@@ -260,11 +260,12 @@ export default function DiagnosePage() {
           <div className="lg:sticky lg:top-8 lg:h-fit">
             {result && (
               <div className="rounded-xl border-2 border-gray-200 bg-white p-8 shadow-sm space-y-6 animate-fade-in-up">
-                {/* Verdict */}
+                {/* 1. Verdict */}
                 <div>
                   <h2 className="text-2xl font-bold text-gray-900 mb-2 tracking-[-0.02em] leading-tight">
                     {result.verdict}
                   </h2>
+                  {/* 2. Verdict Summary */}
                   {result.verdict_summary && (
                     <p className="text-base font-normal text-gray-600 leading-relaxed tracking-[-0.01em]">
                       {result.verdict_summary}
@@ -272,7 +273,7 @@ export default function DiagnosePage() {
                   )}
                 </div>
 
-                {/* Impact Statement */}
+                {/* 3. Impact (why this failure is dangerous) */}
                 {result.impact_statement && (
                   <div>
                     <h3 className="text-xs font-bold text-gray-900 mb-3 uppercase tracking-wider">
@@ -286,17 +287,7 @@ export default function DiagnosePage() {
                   </div>
                 )}
 
-                {/* Explanation */}
-                <div>
-                  <h3 className="text-xs font-bold text-gray-900 mb-3 uppercase tracking-wider">
-                    Explanation
-                  </h3>
-                  <p className="text-base font-normal text-gray-700 leading-relaxed tracking-[-0.01em]">
-                    {result.explanation}
-                  </p>
-                </div>
-
-                {/* Failure Point */}
+                {/* 4. Failure Point (highlighted step where things went wrong) */}
                 {result.failure_point && (
                   <div>
                     <h3 className="text-xs font-bold text-gray-900 mb-3 uppercase tracking-wider">
@@ -311,7 +302,7 @@ export default function DiagnosePage() {
                   </div>
                 )}
 
-                {/* Evidence */}
+                {/* 5. Evidence */}
                 <div>
                   <h3 className="text-xs font-bold text-gray-900 mb-3 uppercase tracking-wider">
                     Evidence
@@ -328,7 +319,7 @@ export default function DiagnosePage() {
                   </div>
                 </div>
 
-                {/* Recommended Fix */}
+                {/* 6. Recommended Fix */}
                 <div>
                   <h3 className="text-xs font-bold text-gray-900 mb-3 uppercase tracking-wider">
                     Recommended Fix
