@@ -3,12 +3,19 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
+interface FailurePoint {
+  step_number: number;
+  step_description: string;
+  reason: string;
+}
+
 interface DiagnosisResult {
   verdict: string;
   explanation: string;
   evidence: string[];
   recommended_fix: string;
   confidence: string;
+  failure_point?: FailurePoint;
 }
 
 export default function DiagnosePage() {
@@ -264,6 +271,21 @@ export default function DiagnosePage() {
                     {result.explanation}
                   </p>
                 </div>
+
+                {/* Failure Point */}
+                {result.failure_point && (
+                  <div>
+                    <h3 className="text-xs font-bold text-gray-900 mb-3 uppercase tracking-wider">
+                      Failure Point
+                    </h3>
+                    <div className="rounded-lg border-2 border-red-300 bg-red-50 p-4">
+                      <p className="text-sm font-medium text-gray-900 leading-relaxed tracking-[-0.01em]">
+                        <span className="font-semibold">Step {result.failure_point.step_number}:</span>{" "}
+                        {result.failure_point.step_description} — {result.failure_point.reason}
+                      </p>
+                    </div>
+                  </div>
+                )}
 
                 {/* Evidence */}
                 <div>
