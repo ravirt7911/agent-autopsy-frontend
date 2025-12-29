@@ -11,6 +11,8 @@ interface FailurePoint {
 
 interface DiagnosisResult {
   verdict: string;
+  verdict_summary: string;
+  impact_statement: string;
   explanation: string;
   evidence: string[];
   recommended_fix: string;
@@ -260,13 +262,35 @@ export default function DiagnosePage() {
               <div className="rounded-xl border-2 border-gray-200 bg-white p-8 shadow-sm space-y-6 animate-fade-in-up">
                 {/* Verdict */}
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-3 tracking-[-0.02em] leading-tight">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-2 tracking-[-0.02em] leading-tight">
                     {result.verdict}
                   </h2>
+                  {result.verdict_summary && (
+                    <p className="text-base font-normal text-gray-600 leading-relaxed tracking-[-0.01em]">
+                      {result.verdict_summary}
+                    </p>
+                  )}
                 </div>
+
+                {/* Impact Statement */}
+                {result.impact_statement && (
+                  <div>
+                    <h3 className="text-xs font-bold text-gray-900 mb-3 uppercase tracking-wider">
+                      Impact
+                    </h3>
+                    <div className="rounded-lg border-2 border-orange-200 bg-orange-50 p-4">
+                      <p className="text-sm font-medium text-gray-900 leading-relaxed tracking-[-0.01em]">
+                        {result.impact_statement}
+                      </p>
+                    </div>
+                  </div>
+                )}
 
                 {/* Explanation */}
                 <div>
+                  <h3 className="text-xs font-bold text-gray-900 mb-3 uppercase tracking-wider">
+                    Explanation
+                  </h3>
                   <p className="text-base font-normal text-gray-700 leading-relaxed tracking-[-0.01em]">
                     {result.explanation}
                   </p>
